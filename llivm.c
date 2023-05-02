@@ -74,13 +74,13 @@ int llivm(FILE* fw,struct Queue* postfix_queue,char* p_var,double* p_val,int* p_
                 if(el_opr.bit_opr == EL_BIT_OPLR){
                     fprintf(fw,"%cRT1 = sub i32 32, %c%d \n",37,37,el2.llivm_idx);
                     fprintf(fw,"%cRT2 = shl i32 %c%d, %c%d \n",37,37,el1.llivm_idx,37,el2.llivm_idx);
-                    fprintf(fw,"%cRT3 = lshr i32 %c%d, %cRT1 \n",37,37,el1.llivm_idx,37);
+                    fprintf(fw,"%cRT3 = ashr i32 %c%d, %cRT1 \n",37,37,el1.llivm_idx,37);
                     fprintf(fw,"%c%d = or i32 %cRT2 ,%cRT3 \n",37,*p_llivm,37,37);
                     *p_llivm = *p_llivm +1;
                 }
                 else{
                     fprintf(fw,"%cRT1 = sub i32 32, %c%d \n",37,37,el2.llivm_idx);
-                    fprintf(fw,"%cRT2 = lshr i32 %c%d, %c%d \n",37,37,el1.llivm_idx,37,el2.llivm_idx);
+                    fprintf(fw,"%cRT2 = ashr i32 %c%d, %c%d \n",37,37,el1.llivm_idx,37,el2.llivm_idx);
                     fprintf(fw,"%cRT3 = shl i32 %c%d, %cRT1 \n",37,37,el1.llivm_idx,37);
                     fprintf(fw,"%c%d = or i32 %cRT2 ,%cRT3 \n",37,*p_llivm,37,37);
                     *p_llivm = *p_llivm +1;
