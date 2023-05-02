@@ -173,11 +173,12 @@ int ruleChecker(int type, int lastType, int blank) {
     int ruleArray[] = {111, 221, 550, 551, 360, 361, 210, 211, 120, 121,
                        450, 451, 541, 540, 650, 651, 530, 531, 310, 311, 321,
                        740,741,470,471,750,751,570,571,491,490,391,390,
-                       690,691,290,291,590,591,670,671,370,371};
+                       690,691,290,291,590,591,670,671};
 
     int status = 100 * type + 10 * lastType + blank;
     for (int i = 0; i < (sizeof(ruleArray) / sizeof(ruleArray[0])); i++) {
-        if (status == ruleArray[i]) return 0;
+        if (status == ruleArray[i])
+            return 0;
     }
 
     return 1;
