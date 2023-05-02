@@ -42,7 +42,7 @@ store i32 %26 , i32* %y
 %29 = ashr i32 %27, %28 
 %30 = load i32,i32* %c 
 %31 = xor i32 %30, -1 
-%33 = xor i32 %29, %32 
-call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @print.str, i32 0, i32 0), i32 %33 ) 
+%32 = xor i32 %29, %31 
+call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @print.str, i32 0, i32 0), i32 %32 ) 
 ret i32 0
 }

@@ -76,7 +76,6 @@ int llivm(FILE* fw,struct Queue* postfix_queue,char* p_var,double* p_val,int* p_
             else {
                 if(el_opr.bit_opr == EL_BIT_OPNOT){
                     fprintf(fw,"%c%d = xor i32 %c%d, -1 \n",37,*p_llivm,37,el2.llivm_idx);
-                    *p_llivm = *p_llivm +1;
                     el1.type=0;                                         //Reset el1 and el2 holders to make them ready to hold other operation values.
                     el1.value=0;
                     el2.type = 0;
