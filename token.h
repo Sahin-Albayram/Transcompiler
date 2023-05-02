@@ -19,6 +19,7 @@
 #define T_BRACKET_CLOSE 6
 #define T_COMA 7
 
+#define EL_COMA 100
 #define EL_VARIABLE 101
 #define EL_NUMBER 102
 #define EL_OPERATOR 103

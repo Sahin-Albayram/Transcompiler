@@ -16,6 +16,12 @@ struct Queue* shunk_yard(struct element* p_el,struct element* p_ass_var){
         if(type == EL_NUMBER || type == EL_VARIABLE){
             enqueue(queue,*p_el);
         }
+        else if(type == EL_COMA){
+            while(peek(root).type != EL_BRACKET_OPEN){
+                enqueue(queue,pop(&root));
+            }
+
+        }
         else if(type== EL_OPERATOR){
 
             if(isEmpty(root) == 1){

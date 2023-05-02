@@ -30,6 +30,10 @@ double elementCreator(struct token *p_t, struct element *p_el, char *p_var, doub
                 return -1;
             }
         }
+        if(type == T_COMA){
+            p_el->type = EL_COMA;
+            *p_el++;
+        }
         if (type == T_BRACKET_OPEN) bracketCount++;
         if (type == T_BRACKET_CLOSE) bracketCount--;
         if (bracketCount < 0) return -1;
