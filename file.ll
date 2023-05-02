@@ -3,46 +3,45 @@
 @print.str = constant [4 x i8] c"%d\0A\00"
 
 define i32 @main() {
-%a  = alloca i32 
-%1 = add i32 8 ,0 
-store i32 %1 , i32* %a 
-%b  = alloca i32 
-%2 = add i32 8 ,0 
-%3 = load i32,i32* %a 
-%4 = add i32 6 ,0 
-%5 = sub i32 %3, %4 
-%6 = mul i32 %2, %5 
-store i32 %6 , i32* %b 
-%c  = alloca i32 
-%7 = load i32,i32* %b 
-%8 = add i32 6 ,0 
-%9 = add i32 %7, %8 
-store i32 %9 , i32* %c 
-%10 = load i32,i32* %a 
-%11 = add i32 2 ,0 
-%12 = shl i32 %10, %11 
-call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @print.str, i32 0, i32 0), i32 %12 ) 
-%14 = load i32,i32* %b 
-%15 = load i32,i32* %a 
-%16 = sub i32 %14, %15 
-%17 = add i32 1 ,0 
-%18 = add i32 %16, %17 
-%19 = add i32 17 ,0 
-%20 = xor i32 %18, %19 
-call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @print.str, i32 0, i32 0), i32 %20 ) 
+%x  = alloca i32 
+%1 = add i32 3 ,0 
+store i32 %1 , i32* %x 
 %y  = alloca i32 
-%22 = add i32 2 ,0 
-%23 = load i32,i32* %b 
-%24 = mul i32 %22, %23 
-%25 = load i32,i32* %c 
-%26 = sub i32 %24, %25 
-store i32 %26 , i32* %y 
-%27 = load i32,i32* %y 
-%28 = add i32 2 ,0 
-%29 = ashr i32 %27, %28 
-%30 = load i32,i32* %c 
-%31 = xor i32 %30, -1 
-%32 = xor i32 %29, %31 
-call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @print.str, i32 0, i32 0), i32 %32 ) 
+%2 = add i32 5 ,0 
+store i32 %2 , i32* %y 
+%zvalue  = alloca i32 
+%3 = add i32 23 ,0 
+%4 = load i32,i32* %x 
+%5 = add i32 1 ,0 
+%6 = load i32,i32* %y 
+%7 = add i32 %5, %6 
+%8 = mul i32 %4, %7 
+%9 = add i32 %3, %8 
+store i32 %9 , i32* %zvalue 
+%10 = load i32,i32* %zvalue 
+call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @print.str, i32 0, i32 0), i32 %10 ) 
+%k  = alloca i32 
+%12 = load i32,i32* %x 
+%13 = load i32,i32* %y 
+%14 = load i32,i32* %zvalue 
+%15 = sub i32 %13, %14 
+%16 = sub i32 %12, %15 
+store i32 %16 , i32* %k 
+%17 = load i32,i32* %x 
+%18 = add i32 3 ,0 
+%19 = load i32,i32* %y 
+%20 = add i32 1 ,0 
+%21 = add i32 2 ,0 
+%22 = add i32 5 ,0 
+%23 = add i32 %21, %22 
+%24 = mul i32 %20, %23 
+%25 = mul i32 %19, %24 
+%26 = mul i32 %18, %25 
+%27 = add i32 %17, %26 
+store i32 %27 , i32* %k 
+%28 = load i32,i32* %k 
+%29 = add i32 1 ,0 
+%30 = add i32 %28, %29 
+call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @print.str, i32 0, i32 0), i32 %30 ) 
 ret i32 0
 }

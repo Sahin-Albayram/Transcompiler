@@ -1,7 +1,7 @@
-a = 8
-b = 8 * (a - 6)
-c = b + 6
-ls(a, 2)
-xor(b - a + 1, 17)
-y = 2 * b - c
-xor(rs(y, 2), not(c))
+x=3
+y=5
+zvalue=23+x*(1+y)
+zvalue
+k=x-y-zvalue
+k=x+3*y*(1*(2+5))
+k + 1
