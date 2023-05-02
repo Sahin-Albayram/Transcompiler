@@ -30,10 +30,7 @@ double elementCreator(struct token *p_t, struct element *p_el, char *p_var, doub
                 return -1;
             }
         }
-        if(type == T_COMA){
-            p_el->type = EL_COMA;
-            *p_el++;
-        }
+
         if (type == T_BRACKET_OPEN) bracketCount++;
         if (type == T_BRACKET_CLOSE) bracketCount--;
         if (bracketCount < 0) return -1;
@@ -53,6 +50,7 @@ double elementCreator(struct token *p_t, struct element *p_el, char *p_var, doub
             p_el->type = EL_NUMBER;
             p_el->value = strtod(tempNum, &dt);
             *p_el++;
+
         }
         if (lastType != T_LETTER && type == T_LETTER) {   // _ Letter
             strcpy(tempVar, "");
@@ -121,7 +119,10 @@ double elementCreator(struct token *p_t, struct element *p_el, char *p_var, doub
             p_el->type = EL_EQUALS;
             *p_el++;
         }
-
+        if(type == T_COMA){
+            p_el->type = EL_COMA;
+            *p_el++;
+        }
         if (type == T_BRACKET_CLOSE) {
             p_el->type = EL_BRACKET_CLOSE;
             *p_el++;

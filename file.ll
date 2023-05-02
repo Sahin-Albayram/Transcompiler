@@ -25,11 +25,11 @@ call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @print.str, i
 %14 = load i32,i32* %b 
 %15 = load i32,i32* %a 
 %16 = sub i32 %14, %15 
-%17 = add i32 %16, %15 
-%18 = add i32 1 ,0 
+%17 = add i32 1 ,0 
+%18 = add i32 %16, %17 
 %19 = add i32 17 ,0 
 %20 = xor i32 %18, %19 
-call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @print.str, i32 0, i32 0), i32 %17 ) 
+call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @print.str, i32 0, i32 0), i32 %20 ) 
 %y  = alloca i32 
 %22 = add i32 2 ,0 
 %23 = load i32,i32* %b 
