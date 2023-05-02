@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
     fp = fopen(filename, "r");
     if (fp == NULL)
         exit(EXIT_FAILURE);
-    int line_count = 0;
+    int line_count = 1;
     fw = fopen(wfilename, "w");
     if (fw == NULL)
         exit(EXIT_FAILURE);
@@ -94,11 +94,6 @@ int main(int argc, char *argv[]) {
     }
     fprintf(fw,"ret i32 0\n"
                "}");
-
-
-
-
-
     fclose(fp);
     fclose(fw);
 

@@ -69,6 +69,10 @@ int llivm(FILE* fw,struct Queue* postfix_queue,char* p_var,double* p_val,int* p_
 
         if(arr[i].type==EL_OPERATOR || arr[i].type==EL_BITOPR){    // Now things go crazy If current cell is operation then we should do operation
             el_opr = arr[i];
+            if(el_opr.bit_opr == EL_BIT_OPNOT){
+                fprintf(fw,"%c%d = xor %c%d, -1 \n",37,*p_llivm,37,el2.llivm_idx);
+                *p_llivm = *p_llivm +1;
+            }
             if(el_opr.bit_opr == EL_BIT_OPLR || el_opr.bit_opr == EL_BIT_OPRR){ // rotate operations need their own implementation therefore they need special part.
 
             }
