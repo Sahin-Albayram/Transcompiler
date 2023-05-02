@@ -28,8 +28,8 @@
 #define EL_BRACKET_CLOSE 107
 #define EL_OP_LLVM 108
 #define EL_LLVM_EMPTY 109
-#define EL_OP_PLUS 0
-#define EL_OP_SUB -1
+#define EL_OP_PLUS -1
+#define EL_OP_SUB 0
 #define EL_OP_MUL 1
 #define EL_OP_DIV 2
 #define EL_OP_AND 3
