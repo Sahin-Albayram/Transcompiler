@@ -20,7 +20,7 @@ store i32 %6 , i32* %b
 store i32 %9 , i32* %c 
 %10 = load i32,i32* %a 
 %11 = add i32 2 ,0 
-%12 = add i32 %10, %11 
+%12 = shl i32 %10, %11 
 call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @print.str, i32 0, i32 0), i32 %12 ) 
 %14 = load i32,i32* %b 
 %15 = load i32,i32* %a 
@@ -28,7 +28,7 @@ call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @print.str, i
 %17 = add i32 17 ,0 
 %18 = add i32 %16, %17 
 %19 = sub i32 %15, %18 
-%20 = add i32 %14, %19 
+%20 = xor i32 %14, %19 
 call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @print.str, i32 0, i32 0), i32 %20 ) 
 %y  = alloca i32 
 %22 = add i32 2 ,0 
@@ -39,11 +39,10 @@ call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @print.str, i
 store i32 %26 , i32* %y 
 %27 = load i32,i32* %y 
 %28 = add i32 2 ,0 
-%29 = load i32,i32* %c 
-%30 = xor i32 %29, -1 
-%31 = add i32 %28, %29 
-%32 = add i32 %27, %31 
-%33 = add i32 %32, %31 
+%29 = ashr i32 %27, %28 
+%30 = load i32,i32* %c 
+%31 = xor i32 %30, -1 
+%33 = xor i32 %29, %32 
 call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @print.str, i32 0, i32 0), i32 %33 ) 
 ret i32 0
 }

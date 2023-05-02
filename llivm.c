@@ -69,26 +69,39 @@ int llivm(FILE* fw,struct Queue* postfix_queue,char* p_var,double* p_val,int* p_
 
         if(arr[i].type==EL_OPERATOR || arr[i].type==EL_BITOPR){    // Now things go crazy If current cell is operation then we should do operation
             el_opr = arr[i];
-            if(el_opr.bit_opr == EL_BIT_OPNOT){
-                fprintf(fw,"%c%d = xor i32 %c%d, -1 \n",37,*p_llivm,37,el2.llivm_idx);
-                *p_llivm = *p_llivm +1;
-            }
+
             if(el_opr.bit_opr == EL_BIT_OPLR || el_opr.bit_opr == EL_BIT_OPRR){ // rotate operations need their own implementation therefore they need special part.
 
             }
             else {
-                char *bit_code = getBitCode(el_opr);                // Detect which operation will we do
-                fprintf(fw,"%c%d = %s i32 %c%d, %c%d \n",37,*p_llivm,bit_code,37,el1.llivm_idx,37,el2.llivm_idx);  // Operation example: %2 = mul i32, %0, %1
-                el1.type=0;                                         //Reset el1 and el2 holders to make them ready to hold other operation values.
-                el1.value=0;
-                el2.type=0;
-                el2.value=0;
-                arr[el1.arr_idx].type = EL_OP_LLVM;   // Result variable should stay on element1
-                arr[el1.arr_idx].llivm_idx= *p_llivm;
-                arr[el2.arr_idx].type = EL_LLVM_EMPTY;// Empty used elements on array  example: 23 x 1 y * + +  ==>  23 x L2 _ _ + +
-                arr[i].type = EL_LLVM_EMPTY;
-                i = 0;
-                *p_llivm = *p_llivm +1;
+                if(el_opr.bit_opr == EL_BIT_OPNOT){
+                    fprintf(fw,"%c%d = xor i32 %c%d, -1 \n",37,*p_llivm,37,el2.llivm_idx);
+                    *p_llivm = *p_llivm +1;
+                    el1.type=0;                                         //Reset el1 and el2 holders to make them ready to hold other operation values.
+                    el1.value=0;
+                    el2.type = 0;
+                    el2.value = 0;
+                    arr[el2.arr_idx].type = EL_OP_LLVM;   // Result variable should stay on element1
+                    arr[el2.arr_idx].llivm_idx= *p_llivm;
+                    arr[i].type = EL_LLVM_EMPTY;
+                    i = 0;
+                    *p_llivm = *p_llivm +1;
+                }
+                else {
+                    char *bit_code = getBitCode(el_opr);                // Detect which operation will we do
+                    fprintf(fw, "%c%d = %s i32 %c%d, %c%d \n", 37, *p_llivm, bit_code, 37, el1.llivm_idx, 37,
+                            el2.llivm_idx);  // Operation example: %2 = mul i32, %0, %1
+                    el1.type = 0;                                         //Reset el1 and el2 holders to make them ready to hold other operation values.
+                    el1.value = 0;
+                    el2.type = 0;
+                    el2.value = 0;
+                    arr[el1.arr_idx].type = EL_OP_LLVM;   // Result variable should stay on element1
+                    arr[el1.arr_idx].llivm_idx = *p_llivm;
+                    arr[el2.arr_idx].type = EL_LLVM_EMPTY;// Empty used elements on array  example: 23 x 1 y * + +  ==>  23 x L2 _ _ + +
+                    arr[i].type = EL_LLVM_EMPTY;
+                    i = 0;
+                    *p_llivm = *p_llivm + 1;
+                }
             }
 
         }
@@ -119,7 +132,7 @@ int llivm(FILE* fw,struct Queue* postfix_queue,char* p_var,double* p_val,int* p_
 
 char* getBitCode(struct element el_opr){
     int type;
-    if(el_opr.type = EL_OPERATOR){
+    if(el_opr.type == EL_OPERATOR){
         type = el_opr.opr;
 
     }else {
@@ -153,6 +166,7 @@ char* getBitCode(struct element el_opr){
     }
     else if(type == EL_BIT_OPRS){
         return "ashr";
+
     }else return "FAIL";
 
 }

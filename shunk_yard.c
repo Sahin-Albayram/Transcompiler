@@ -44,6 +44,9 @@ struct Queue* shunk_yard(struct element* p_el,struct element* p_ass_var){
                 enqueue(queue,pop(&root));
             }
             pop(&root);
+            if(peek(root).type == EL_BITOPR){
+                enqueue(queue,pop(&root));
+            }
         }
         else if(type== EL_EQUALS){
             struct element ass_var = dequeue(queue);
